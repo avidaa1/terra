@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVIDAA TERRA -- A Living Library of Earth</title>
+<meta name="description" content="A living encyclopedic archive of Earth -- flora, fauna, ocean, systems, deep time, mass extinctions, and AI for nature. For humans and AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AVIDAA TERRA","description":"A living library of Earth for humans and AI.","url":"https://avidaa1.github.io/terra","creator":{"@type":"Organization","name":"AVIDAA"},"dateModified":"2026-05-27","keywords":["biodiversity","flora","fauna","ocean","mass extinction","AI conservation","nature","earth systems","deep time","evolution"]}</script>
+<style>
+:root{
+  --c-primary:#2E5D3F;--c-accent:#87A878;--c-bg:#F7F4EC;--c-ocean:#1F4E6B;
+  --c-ink:#1A1F1B;--c-ink-soft:#3D4540;--c-rule:#C8C2B0;--c-card-bg:#EEE9DC;
+  --c-tag:#D4EFD0;--c-tag-text:#2E5D3F;--nav-h:56px;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--c-bg);color:var(--c-ink);font-family:var(--sans);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased}
+nav{position:sticky;top:0;z-index:200;background:var(--c-bg);border-bottom:1px solid var(--c-rule);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:var(--nav-h)}
+.nav-brand{font-family:var(--serif);font-size:1.15rem;font-weight:600;letter-spacing:.08em;color:var(--c-primary);text-decoration:none;white-space:nowrap}
+.nav-brand span{font-style:italic;font-weight:400;color:var(--c-accent)}
+.nav-links{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{display:block;padding:.3rem .7rem;font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-soft);text-decoration:none;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--c-primary)}
+section{scroll-margin-top:var(--nav-h);padding:5rem 2rem;max-width:1100px;margin:0 auto}
+section.full-bleed{max-width:none;padding-left:0;padding-right:0}
+.section-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.glyph{display:block;width:40px;height:40px;margin-bottom:1.5rem;opacity:.6}
+.sec-label{font-family:var(--sans);font-size:.65rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--c-accent);margin-bottom:.5rem}
+.sec-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.15;color:var(--c-ink);margin-bottom:1.25rem}
+.sec-title em{font-style:italic;color:var(--c-primary)}
+.sec-lead{font-size:1.05rem;color:var(--c-ink-soft);max-width:65ch;margin-bottom:3rem;line-height:1.75}
+hr.rule{border:none;border-top:1px solid var(--c-rule);margin:3.5rem 0}
+.sub-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--c-ink);margin:2.5rem 0 1.25rem}
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.25rem;margin-bottom:3rem}
+.stat-card{background:var(--c-card-bg);border:1px solid var(--c-rule);border-radius:4px;padding:1.5rem}
+.stat-card dd{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;font-style:italic;color:var(--c-primary);line-height:1;margin-bottom:.4rem}
+.stat-card dt{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--c-ink-soft)}
+/* HERO */
+#hub{padding-top:7rem;padding-bottom:5rem}
+.hero-eyebrow{font-family:var(--sans);font-size:.65rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--c-accent);margin-bottom:1rem}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:700;line-height:1.05;color:var(--c-ink);margin-bottom:.5rem}
+.hero-title em{font-style:italic;color:var(--c-primary)}
+.hero-sub{font-family:var(--serif);font-size:clamp(1rem,2vw,1.3rem);font-style:italic;color:var(--c-ink-soft);margin-bottom:2.5rem;max-width:55ch}
+.hero-manifesto{font-size:.95rem;color:var(--c-ink-soft);max-width:62ch;line-height:1.8;border-left:3px solid var(--c-accent);padding-left:1.25rem;margin-bottom:3.5rem}
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--c-accent),var(--c-primary))}
+.tl-item{position:relative;padding:0 0 2.5rem 1.75rem}
+.tl-item::before{content:'';position:absolute;left:-5px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--c-bg);border:2px solid var(--c-primary)}
+.tl-date{font-family:var(--serif);font-size:1.3rem;font-weight:600;font-style:italic;color:var(--c-primary);line-height:1;margin-bottom:.25rem}
+.tl-event{font-size:.92rem;font-weight:500;color:var(--c-ink);margin-bottom:.2rem}
+.tl-desc{font-size:.85rem;color:var(--c-ink-soft);line-height:1.6;max-width:58ch}
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.25rem;margin-top:2.5rem}
+.card-grid-wide{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;margin-top:2.5rem}
+.card{background:var(--c-card-bg);border:1px solid var(--c-rule);border-radius:4px;padding:1.5rem}
+.card-icon{font-size:1.8rem;margin-bottom:.75rem;display:block}
+.card-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--c-ink);margin-bottom:.25rem}
+.card-sub{font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--c-accent);margin-bottom:.6rem}
+.card-body{font-size:.86rem;color:var(--c-ink-soft);line-height:1.65}
+.tag{display:inline-block;background:var(--c-tag);color:var(--c-tag-text);font-size:.62rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:.2rem .5rem;border-radius:2px;margin-top:.6rem;margin-right:.3rem}
+.tag.danger{background:#FFD9D4;color:#7A1F1A}
+.tag.warn{background:#FFF3CC;color:#7A5A00}
+.tag.blue{background:#D0EAF0;color:#1F4E6B}
+/* SPECIES GRID */
+.species-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+.sp-card{background:var(--c-bg);border:1px solid var(--c-rule);border-radius:4px;padding:1.1rem}
+.sp-name{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--c-ink);margin-bottom:.15rem}
+.sp-latin{font-family:var(--serif);font-size:.85rem;font-style:italic;color:var(--c-accent);margin-bottom:.4rem}
+.sp-body{font-size:.8rem;color:var(--c-ink-soft);line-height:1.55}
+/* TAXA TABLE */
+.taxa-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:2rem}
+.taxa-table th{font-family:var(--sans);font-size:.63rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-soft);border-bottom:2px solid var(--c-rule);padding:.6rem .75rem;text-align:left}
+.taxa-table td{padding:.7rem .75rem;border-bottom:1px solid var(--c-rule);vertical-align:top;color:var(--c-ink-soft)}
+.taxa-table td:first-child{font-family:var(--serif);font-weight:600;font-size:1rem;color:var(--c-ink)}
+.taxa-table tr:last-child td{border-bottom:none}
+.pct.high{color:#B0392B;font-weight:500}
+.pct.med{color:#C07A00;font-weight:500}
+.pct.low{color:#2E5D3F;font-weight:500}
+/* CYCLE */
+.cycle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;margin-top:2rem}
+.cycle-card{border:1px solid var(--c-rule);border-radius:4px;padding:1.5rem;background:var(--c-card-bg)}
+.cycle-num{font-family:var(--serif);font-size:2.2rem;font-weight:700;font-style:italic;color:var(--c-accent);line-height:1;margin-bottom:.5rem}
+.cycle-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--c-ink);margin-bottom:.4rem}
+.cycle-body{font-size:.84rem;color:var(--c-ink-soft);line-height:1.65}
+/* ATMO */
+.atmo-bar{display:flex;border-radius:4px;overflow:hidden;height:44px;margin:2rem 0 .5rem}
+.atmo-seg{display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:.68rem;font-weight:500;color:#fff;white-space:nowrap}
+.atmo-legend{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;margin-top:.75rem;font-size:.78rem;color:var(--c-ink-soft)}
+/* DEPTH ZONES */
+.depth-list{list-style:none;margin-top:1.5rem}
+.depth-item{display:grid;grid-template-columns:120px 100px 1fr;gap:1rem;align-items:baseline;padding:.9rem 0;border-bottom:1px solid var(--c-rule);font-size:.87rem}
+.depth-item:last-child{border-bottom:none}
+.depth-zone{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--c-primary)}
+.depth-range{color:var(--c-accent);font-style:italic;font-size:.82rem}
+.depth-body{color:var(--c-ink-soft)}
+/* EVENTS DARK */
+#events{background:#0B0E0D;color:#EFE9DC;max-width:none;padding:5rem 0}
+#events .section-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+#events .sec-label{color:#D6A84A}
+#events .sec-title{color:#EFE9DC}
+#events .sec-lead{color:#9A9A8C}
+#events hr.rule{border-top-color:#2A2E2C}
+#events .stat-card{background:#131716;border-color:#2A2E2C}
+#events .stat-card dd{color:#D6A84A}
+#events .stat-card dt{color:#9A9A8C}
+#events .sub-title{color:#EFE9DC}
+.extinction-list{list-style:none;margin-top:2rem}
+.extinction-list li{display:grid;grid-template-columns:170px 90px 1fr 1fr;gap:1rem;align-items:baseline;padding:1.1rem 0;border-bottom:1px solid #2A2E2C;font-size:.87rem}
+.extinction-list li:last-child{border-bottom:none}
+.ext-name{font-family:var(--serif);font-size:1rem;font-weight:600;color:#EFE9DC}
+.ext-date{color:#D6A84A;font-style:italic;font-size:.8rem}
+.ext-loss{color:#B0392B;font-weight:500}
+.ext-trigger{color:#9A9A8C}
+.events-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;margin-top:2.5rem}
+.event-card{background:#131716;border:1px solid #2A2E2C;border-radius:4px;padding:1.5rem}
+.event-card .ec-icon{font-size:1.8rem;margin-bottom:.75rem;display:block}
+.event-card .ec-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:#EFE9DC;margin-bottom:.35rem}
+.event-card .ec-body{font-size:.84rem;color:#9A9A8C;line-height:1.65}
+.event-card .ec-stat{color:#D6A84A;font-size:.78rem;margin-top:.5rem;font-style:italic}
+.sixth-box{margin-top:3rem;border:1px solid #B0392B;border-radius:4px;padding:2rem;background:#120A08}
+.sixth-box h3{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:#EFE9DC;margin-bottom:1rem}
+.sixth-box p{color:#9A9A8C;font-size:.88rem;line-height:1.75;margin-bottom:.75rem}
+.sixth-stats{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:1.5rem}
+.ss-item{flex:1;min-width:140px}
+.ss-num{font-family:var(--serif);font-size:2.2rem;font-weight:700;font-style:italic;color:#B0392B;line-height:1;margin-bottom:.25rem}
+.ss-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:#6E6E6E}
+/* AI TABLE */
+.ai-table-wrap{overflow-x:auto;margin-top:2rem}
+.ai-table{width:100%;border-collapse:collapse;font-size:.84rem;min-width:700px}
+.ai-table th{font-family:var(--sans);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-soft);border-bottom:2px solid var(--c-rule);padding:.6rem .75rem;text-align:left}
+.ai-table td{padding:.85rem .75rem;border-bottom:1px solid var(--c-rule);vertical-align:top;color:var(--c-ink-soft);font-size:.82rem;line-height:1.5}
+.ai-table td:first-child{font-weight:500;color:var(--c-ink)}
+.ai-table tr:last-child td{border-bottom:none}
+.domain-tag{display:inline-block;background:var(--c-tag);color:var(--c-tag-text);font-size:.6rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .45rem;border-radius:2px}
+/* ARCHIVE */
+#archive{background:var(--c-card-bg);border-top:2px solid var(--c-rule);max-width:none;padding:4rem 0}
+#archive .section-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.sources-list{list-style:none;margin-top:2rem;columns:2;column-gap:3rem}
+.sources-list li{font-size:.78rem;color:var(--c-ink-soft);padding-bottom:.6rem;break-inside:avoid;line-height:1.5}
+.cite-block{margin-top:2.5rem;background:var(--c-bg);border:1px solid var(--c-rule);border-radius:4px;padding:1.25rem 1.5rem;font-family:'Courier New',monospace;font-size:.76rem;color:var(--c-ink-soft)}
+.footer-credo{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--c-rule);font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--c-ink-soft)}
+.footer-sig{margin-top:1.5rem;font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--c-accent)}
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:700px){
+  nav{padding:0 1rem}
+  section{padding:3.5rem 1.25rem}
+  .section-inner{padding:0 1.25rem}
+  .hero-title{font-size:2.8rem}
+  .extinction-list li{grid-template-columns:1fr 1fr}
+  .extinction-list li .ext-trigger{display:none}
+  .sources-list{columns:1}
+  .two-col{grid-template-columns:1fr}
+  .depth-item{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <a class="nav-brand" href="#hub">AVIDAA <span>TERRA</span></a>
+  <ul class="nav-links">
+    <li><a href="#hub">Hub</a></li>
+    <li><a href="#origins">Origins</a></li>
+    <li><a href="#flora">Flora</a></li>
+    <li><a href="#fauna">Fauna</a></li>
+    <li><a href="#ocean">Ocean</a></li>
+    <li><a href="#systems">Systems</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#archive">Archive</a></li>
+  </ul>
+</nav>
+
+<!-- HUB -->
+<section id="hub">
+  <p class="hero-eyebrow">AVIDAA TERRA -- Est. 2026</p>
+  <h1 class="hero-title">A Living Library<br>of <em>Earth</em></h1>
+  <p class="hero-sub">For humans and AI -- past, present, and all that remains.</p>
+  <p class="hero-manifesto">Every species. Every system. Every extinction. Every rebirth. This archive holds no prejudice -- from the first microbe to the last mammoth, from the ocean floor no eye has seen to the atmosphere that makes all breath possible. Built in realtime. Permanent record.</p>
+  <div class="stat-grid">
+    <dl class="stat-card"><dd>2.17M</dd><dt>Described species on Earth (IUCN 2025)</dt></dl>
+    <dl class="stat-card"><dd>3.8 Ga</dd><dt>Years of life on this planet</dt></dl>
+    <dl class="stat-card"><dd>5</dd><dt>Mass extinctions in Earth history</dt></dl>
+    <dl class="stat-card"><dd>0.001%</dd><dt>Of the deep seafloor ever seen by humans</dt></dl>
+    <dl class="stat-card"><dd>~8.7M</dd><dt>True estimated total species (Mora et al.)</dt></dl>
+    <dl class="stat-card"><dd>99.9%</dd><dt>Of all species that ever lived are now extinct</dt></dl>
+  </div>
+</section>
+
+<hr class="rule" style="max-width:1100px;margin:0 auto 0">
+
+<!-- ORIGINS -->
+<section id="origins">
+  <svg class="glyph" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#87A878" stroke-width="1.5"/><circle cx="20" cy="20" r="10" stroke="#2E5D3F" stroke-width="1.5"/><circle cx="20" cy="20" r="3" fill="#2E5D3F"/></svg>
+  <p class="sec-label">Deep Time</p>
+  <h2 class="sec-title">Origins of <em>Life</em></h2>
+  <p class="sec-lead">From the formation of Earth 4.54 billion years ago to the last woolly mammoth on Wrangel Island -- a complete timeline of every major chapter in the history of life on this planet.</p>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-date">4.54 Ga</div><div class="tl-event">Earth Forms</div><div class="tl-desc">Accretion from the solar nebula. A molten, crater-scarred world with a reducing atmosphere of methane, ammonia, and water vapour. No oxygen. No life. The Moon forms from a giant impact (Theia hypothesis) within the first 100 million years.</div></div>
+    <div class="tl-item"><div class="tl-date">~4.1 Ga</div><div class="tl-event">Late Heavy Bombardment</div><div class="tl-desc">A period of intense asteroid and comet impacts. Some scientists propose these impacts may have delivered organic molecules and water to early Earth. Others argue life could not have survived this period at surface level.</div></div>
+    <div class="tl-item"><div class="tl-date">~3.8 Ga</div><div class="tl-event">Earliest Life Traces</div><div class="tl-desc">Carbon isotope signatures in 3.8-billion-year-old Greenland rocks (Isua formation) suggest biological activity. Stromatolites at Warrawoona, Western Australia (~3.5 Ga) are the oldest confirmed fossils -- layered mats of cyanobacteria, still forming in Shark Bay today.</div></div>
+    <div class="tl-item"><div class="tl-date">~3.5 Ga</div><div class="tl-event">Prokaryotes Diversify</div><div class="tl-desc">Single-celled organisms without a nucleus dominate all life. Bacteria and archaea fill every available niche -- hydrothermal vents, acidic hot springs, hypersaline lagoons. This microbial world will remain the dominant form of life for the next 3 billion years.</div></div>
+    <div class="tl-item"><div class="tl-date">~2.7 Ga</div><div class="tl-event">Cyanobacteria Photosynthesis</div><div class="tl-desc">Cyanobacteria evolve oxygenic photosynthesis -- splitting water molecules to release free oxygen. A world-changing biological innovation. For ~300 million years, the oxygen released is absorbed by iron in the oceans, rusting them and creating the banded iron formations we mine today.</div></div>
+    <div class="tl-item"><div class="tl-date">~2.4 Ga</div><div class="tl-event">Great Oxidation Event</div><div class="tl-desc">The iron-oxygen buffer saturates. Free oxygen floods the atmosphere for the first time. For most anaerobic life this is a catastrophe -- the first mass extinction. For aerobic organisms it is the beginning of everything. Atmospheric O2 climbs from near zero to ~2%.</div></div>
+    <div class="tl-item"><div class="tl-date">~1.8 Ga</div><div class="tl-event">First Eukaryotes</div><div class="tl-desc">Cells with a true nucleus appear, likely from endosymbiosis -- an archaeon absorbing a bacterium and keeping it as a mitochondrion. The last common ancestor of all eukaryotes alive today traces here. This is the evolutionary step that eventually makes complex multicellular life possible.</div></div>
+    <div class="tl-item"><div class="tl-date">~1.2 Ga</div><div class="tl-event">Sexual Reproduction Evolves</div><div class="tl-desc">The mixing of genetic material from two parents dramatically accelerates evolution. Variation, not just mutation, becomes the engine of adaptation. The pace of evolutionary change across all eukaryotes begins to quicken.</div></div>
+    <div class="tl-item"><div class="tl-date">~750 -- 580 Ma</div><div class="tl-event">Snowball Earth</div><div class="tl-desc">Possibly two episodes where Earth freezes entirely or nearly so -- ice sheets reaching the equator. Surviving microbes sheltered near hydrothermal vents. The melt that follows floods the ocean with nutrients and may have triggered the explosion of animal life that followed.</div></div>
+    <div class="tl-item"><div class="tl-date">~580 Ma</div><div class="tl-event">Ediacaran Biota</div><div class="tl-desc">The first complex multicellular organisms -- soft-bodied, frond-like, disc-shaped creatures covering the seafloor. Strange and alien, most have no clear relationship to any living animal group. Some may be the ancestors of cnidarians. Most vanish before the Cambrian with no known descendants.</div></div>
+    <div class="tl-item"><div class="tl-date">538.8 +/- 0.6 Ma</div><div class="tl-event">Cambrian Explosion</div><div class="tl-desc">Between 20 and 35 animal phyla appear within roughly 13--25 million years (Britannica). Eyes, shells, jointed legs, bilateral symmetry, predation -- all the body plans of every animal alive today emerge in this single geological instant. The Burgess Shale in Canada preserves soft-bodied Cambrian animals in extraordinary detail.</div></div>
+    <div class="tl-item"><div class="tl-date">~475 Ma</div><div class="tl-event">Plants Colonise Land</div><div class="tl-desc">Green algae make the transition to land. The first land plants -- relatives of modern liverworts -- begin transforming bare rock into soil. Within 100 million years, vast forests cover the continents. Atmospheric oxygen rises dramatically as forests spread, eventually reaching 35% in the Carboniferous.</div></div>
+    <div class="tl-item"><div class="tl-date">~375 Ma</div><div class="tl-event">First Tetrapods</div><div class="tl-desc">Fish with lobed fins evolve into the first four-limbed vertebrates -- tetrapods. Tiktaalik roseae, discovered in 2004 in Arctic Canada, is a transitional form with a neck, ribs, and proto-limbs. The colonisation of land by vertebrates begins. All amphibians, reptiles, birds, and mammals trace to this moment.</div></div>
+    <div class="tl-item"><div class="tl-date">~320 Ma</div><div class="tl-event">Amniotes -- Reptiles and Mammals Diverge</div><div class="tl-desc">The amniotic egg -- with its internal membrane protecting the embryo -- frees vertebrates entirely from dependence on water for reproduction. Reptiles and synapsids (the lineage leading to mammals) split. By 300 Ma, synapsids are the dominant land vertebrates. They will be dethroned by archosaurs after the End-Permian extinction.</div></div>
+    <div class="tl-item"><div class="tl-date">252.2 -- 66 Ma</div><div class="tl-event">Mesozoic Era -- Age of Dinosaurs</div><div class="tl-desc">The Triassic (252--201 Ma), Jurassic (201--145 Ma), and Cretaceous (145--66 Ma). After the End-Permian extinction destroys 96% of species, archosaurs rise to dominate. True dinosaurs appear ~235 Ma. By the Jurassic, sauropods like Argentinosaurus (up to 80 tonnes) and theropods like Allosaurus rule. The first mammals are small, nocturnal, and mostly insectivorous throughout.</div></div>
+    <div class="tl-item"><div class="tl-date">~150 Ma</div><div class="tl-event">First Birds</div><div class="tl-desc">Archaeopteryx lithographica -- part feathered theropod, part bird -- is found in 150 Ma Jurassic limestone in Germany. It has wings with claws, teeth, and a bony tail. True birds (Aves) diversify through the Cretaceous. When the asteroid hits at 66 Ma, the avian line is the only dinosaur lineage to survive.</div></div>
+    <div class="tl-item"><div class="tl-date">~130 Ma</div><div class="tl-event">Flowering Plants Appear</div><div class="tl-desc">Angiosperms -- flowering plants -- evolve and within 30 million years come to dominate plant life globally, co-evolving with insects (especially bees), birds, and later mammals for pollination and seed dispersal. Today they comprise ~295,000 species and are the foundation of almost every terrestrial food web.</div></div>
+    <div class="tl-item"><div class="tl-date">66 Ma</div><div class="tl-event">Chicxulub Impact</div><div class="tl-desc">A 10--20 km asteroid strikes the Yucatan Peninsula at ~72,000 km/h. The impact releases energy equivalent to 1 billion Hiroshima bombs. Global wildfires, years of nuclear winter, and ocean acidification follow. 76% of all species vanish. Every non-avian dinosaur is gone. Mammals and birds -- which survived in burrows and treetops -- begin their rapid radiation.</div></div>
+    <div class="tl-item"><div class="tl-date">~55 Ma</div><div class="tl-event">Eocene Thermal Maximum -- Mammals Diversify</div><div class="tl-desc">A rapid global warming event (PETM) drives explosive mammalian diversification. The first horses (Eohippus, dog-sized), early whales (Pakicetus, a land mammal entering water), early primates, and giant flightless birds all appear within a few million years of the asteroid impact.</div></div>
+    <div class="tl-item"><div class="tl-date">~35 Ma</div><div class="tl-event">Antarctic Ice Sheet Forms</div><div class="tl-desc">The Drake Passage opens between Antarctica and South America as Gondwana fragments. The resulting circumpolar current isolates Antarctica thermally. An ice sheet forms for the first time since the Permian. Global climate cools. Grasslands spread. Grazers evolve. The world begins to look recognisably modern.</div></div>
+    <div class="tl-item"><div class="tl-date">8 -- 6 Ma</div><div class="tl-event">Human -- Chimpanzee Divergence</div><div class="tl-desc">The last common ancestor of humans and chimpanzees lives in Africa. The exact split is debated -- genomic evidence points to 6--7 Ma; candidate fossils include Sahelanthropus tchadensis (~7 Ma, Chad) and Orrorin tugenensis (~6 Ma, Kenya). The lineage leading to all modern humans -- the hominin line -- begins here.</div></div>
+    <div class="tl-item"><div class="tl-date">~4.4 Ma</div><div class="tl-event">Ardipithecus -- Early Bipedalism</div><div class="tl-desc">Ardipithecus ramidus -- discovered in Ethiopia -- shows evidence of facultative bipedalism while retaining arboreal adaptations. Earlier than the famous "Lucy" (Australopithecus afarensis, ~3.2 Ma), Ardi forces a major rethink of human evolution's relationship to knuckle-walking.</div></div>
+    <div class="tl-item"><div class="tl-date">~2.5 Ma</div><div class="tl-event">Genus Homo Appears -- Stone Tools</div><div class="tl-desc">The first members of genus Homo (Homo habilis) and the oldest confirmed stone tools (Lomekwian, ~3.3 Ma; Oldowan, ~2.6 Ma) appear in Africa. Brain size begins a sustained increase. The Pleistocene ice ages begin -- glacial cycles of ~100,000 years will shape human evolution and geography for the next 2.5 million years.</div></div>
+    <div class="tl-item"><div class="tl-date">~1.9 Ma</div><div class="tl-event">Homo erectus</div><div class="tl-desc">The first hominin to leave Africa. Homo erectus spreads across Asia and possibly Europe by ~1.7 Ma. Uses fire (possibly). Cooks food -- a critical cognitive and physical development. Persists for ~1.8 million years, the longest-lived Homo species. Fossils found in Georgia, Java, and China.</div></div>
+    <div class="tl-item"><div class="tl-date">~300,000 ya</div><div class="tl-event">Homo sapiens</div><div class="tl-desc">Earliest Homo sapiens fossils from Jebel Irhoud, Morocco (~315,000 ya). Anatomically modern humans with high rounded skulls, flat faces, and chins. Other Homo species coexist: Neanderthals in Europe and western Asia, Denisovans in Siberia and Asia, Homo naledi in South Africa. Modern humans interbreed with Neanderthals -- most non-African humans carry 1--4% Neanderthal DNA.</div></div>
+    <div class="tl-item"><div class="tl-date">~70,000 -- 50,000 ya</div><div class="tl-event">Behavioural Modernity -- Out of Africa</div><div class="tl-desc">Cave art, personal ornaments, long-distance trade, complex tools, symbolic thought. The main dispersal of behaviourally modern Homo sapiens from Africa. By 45,000 ya Australia is reached. By 40,000 ya modern humans reach Europe, where they encounter and eventually replace Neanderthals. By 15,000 ya the Americas are populated via Beringia.</div></div>
+    <div class="tl-item"><div class="tl-date">~11,700 ya</div><div class="tl-event">Holocene Begins</div><div class="tl-desc">The Pleistocene ends. The last glacial period gives way to the warm, stable interglacial we still inhabit. Sea levels rise ~120 metres. Agriculture begins independently in the Fertile Crescent (~12,000 ya), China (~9,000 ya), and the Americas (~8,000 ya). Every human civilisation -- every city, nation, and technological achievement -- exists entirely within this narrow warm window.</div></div>
+    <div class="tl-item"><div class="tl-date">~4,000 ya (~2000 BCE)</div><div class="tl-event">Last Woolly Mammoths</div><div class="tl-desc">A dwarf island population of woolly mammoths (Mammuthus primigenius) survives on Wrangel Island, Siberia, while the Egyptian Middle Kingdom is in full flourish. They are the last survivors of the Pleistocene megafauna. Their sudden extinction remains scientifically unresolved -- inbreeding collapse was ruled out by genomic evidence (Dehasque et al., Cell, 2024). Something sudden ended them.</div></div>
+  </div>
+</section>
+
+<hr class="rule" style="max-width:1100px;margin:0 auto">
+
+<!-- FLORA -->
+<section id="flora">
+  <svg class="glyph" viewBox="0 0 40 40" fill="none"><path d="M20 36 V16" stroke="#2E5D3F" stroke-width="1.5" stroke-linecap="round"/><path d="M20 20 C14 16 8 18 6 12 C12 10 18 14 20 20Z" fill="#87A878" opacity=".8"/><path d="M20 26 C26 22 32 24 34 18 C28 16 22 20 20 26Z" fill="#2E5D3F" opacity=".7"/></svg>
+  <p class="sec-label">Kingdom Plantae and Fungi</p>
+  <h2 class="sec-title">Flora -- <em>The Green World</em></h2>
+  <p class="sec-lead">Plants built the atmosphere. Fungi connect forests. Together they form the living foundation beneath every animal on Earth. From the tallest sequoia to the smallest moss, nothing here is unimportant.</p>
+  <div class="stat-grid">
+    <dl class="stat-card"><dd>~400K</dd><dt>Vascular plant species described</dt></dl>
+    <dl class="stat-card"><dd>73,274</dd><dt>Tree species globally (PNAS 2022)</dt></dl>
+    <dl class="stat-card"><dd>46,337</dd><dt>Tree species threatened (IUCN 2024)</dt></dl>
+    <dl class="stat-card"><dd>~2.5M</dd><dt>Estimated total fungi species (Kew 2023)</dt></dl>
+    <dl class="stat-card"><dd>~75%</dd><dt>Of food crops depend on animal pollinators</dt></dl>
+    <dl class="stat-card"><dd>~50%</dd><dt>Of Earth's oxygen from marine phytoplankton</dt></dl>
+  </div>
+
+  <h3 class="sub-title">Major Plant Groups</h3>
+  <div class="card-grid-wide">
+    <div class="card">
+      <span class="card-icon">🌸</span>
+      <div class="card-title">Angiosperms -- Flowering Plants</div>
+      <div class="card-sub">~295,000 species -- 74% of all plants</div>
+      <div class="card-body">The dominant plant group on Earth. Evolved ~130 Ma, co-evolving with insects and birds for pollination. Produce enclosed seeds within fruits. Include all grasses, oaks, palms, orchids, roses, and virtually every crop plant. Orchids alone account for ~28,000 species -- the largest plant family. Duckweed (Wolffia) is the smallest flowering plant at 0.1 mm.</div>
+      <span class="tag">Dominant Group</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌲</span>
+      <div class="card-title">Gymnosperms -- Naked Seed Plants</div>
+      <div class="card-sub">~1,100 species -- Ancient Lineage</div>
+      <div class="card-body">Conifers, cycads, ginkgo, and gnetales. Seeds are unenclosed -- "naked." The Wollemi pine (Wollemia nobilis) was known only from 200 Ma fossils until a living population was discovered in a single canyon in Australia in 1994. The coastal redwood (Sequoia sempervirens) reaches 115m -- the tallest living tree. The bristlecone pine (Pinus longaeva) lives over 5,000 years.</div>
+      <span class="tag">Tallest + Oldest Trees</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌿</span>
+      <div class="card-title">Pteridophytes -- Ferns and Allies</div>
+      <div class="card-sub">~12,000 fern species + ~1,300 lycophytes</div>
+      <div class="card-body">Among the oldest vascular plants -- ferns appeared ~360 Ma. Do not produce seeds; reproduce via spores. The tree ferns of New Zealand and Australia (Cyathea) reach 20m. Aquatic ferns (Salvinia, Azolla) are ecological engineers -- Azolla was used 49 Ma in the Arctic to cool the planet by fixing CO2 (the Azolla Event).</div>
+      <span class="tag">360 Ma Old Lineage</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🪨</span>
+      <div class="card-title">Bryophytes -- Mosses, Liverworts, Hornworts</div>
+      <div class="card-sub">~20,000 species -- First Land Plants</div>
+      <div class="card-body">The first plants to colonise land (~475 Ma). No vascular tissue -- water moves by osmosis. Sphagnum moss (peat moss) alone covers ~3% of Earth's land surface and stores ~500 billion tonnes of carbon -- more than all living forests combined. Plays a critical role in northern hemisphere carbon sequestration. Can survive desiccation and revive when wetted.</div>
+      <span class="tag">500 Bt Carbon Stored</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌴</span>
+      <div class="card-title">Trees -- 73,274 Species</div>
+      <div class="card-sub">~9,200 species still undiscovered</div>
+      <div class="card-body">The IUCN Global Tree Assessment (Oct 2024) found 46,337 tree species threatened -- more than all threatened birds, mammals, reptiles and amphibians combined. The Amazon basin alone holds ~16,000 tree species. The African baobab (Adansonia digitata) stores up to 100,000 litres of water in its trunk. Trees communicate through mycorrhizal networks -- the "Wood Wide Web."</div>
+      <span class="tag danger">46,337 Threatened</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🍄</span>
+      <div class="card-title">Fungi -- The Hidden Kingdom</div>
+      <div class="card-sub">~155K described of ~2.5M estimated</div>
+      <div class="card-body">Not plants -- the kingdom Fungi is more closely related to animals than to plants. Mushrooms, yeasts, moulds, truffles. Mycelial networks permeate every gram of healthy forest soil -- the Armillaria ostoyae in Oregon covers 965 ha (the largest known organism). ~90% of land plants depend on mycorrhizal fungi to absorb water and nutrients. Only ~0.4% of fungi species have been IUCN-assessed.</div>
+      <span class="tag">Largest Organism on Earth</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌊</span>
+      <div class="card-title">Algae and Phytoplankton</div>
+      <div class="card-sub">~50% of Earth's atmospheric oxygen</div>
+      <div class="card-body">Marine phytoplankton produce approximately 50% of Earth's atmospheric oxygen (NOAA) -- possibly up to 85% (Scripps). Prochlorococcus, the most abundant photosynthetic organism on Earth, is 0.6 micrometres and produces up to 20% of the biosphere's O2. Kelp forests off California and Chile are among the most productive ecosystems, growing up to 60 cm per day.</div>
+      <span class="tag">Invisible Oxygen Engine</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🏜</div>
+      <div class="card-title">Succulents and Xerophytes</div>
+      <div class="card-sub">Adapted to drought and extremes</div>
+      <div class="card-body">Cacti (family Cactaceae -- ~1,750 species, almost all native to the Americas) store water in fleshy stems. The saguaro cactus lives 150--200 years and provides habitat for >100 bird species. Euphorbias in Africa independently evolved near-identical succulent forms -- convergent evolution. Some desert plants (resurrection plants, Selaginella lepidophylla) survive total desiccation for years.</div>
+      <span class="tag">Convergent Evolution</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🪴</span>
+      <div class="card-title">Carnivorous Plants</div>
+      <div class="card-sub">~800 species across 19 genera</div>
+      <div class="card-body">Evolved independently at least 6 times in nutrient-poor habitats. Venus flytrap (Dionaea muscipula) closes in 100 milliseconds. Nepenthes pitcher plants hold up to 3.5 litres and have been documented trapping rats and lizards. Sundews (Drosera, 200+ species) use sticky mucilage tentacles. Bladderworts (Utricularia, 230+ species) use vacuum traps -- the fastest plant motion known.</div>
+      <span class="tag">Evolved 6 Times</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌾</span>
+      <div class="card-title">Grasses -- Foundation of Civilisation</div>
+      <div class="card-sub">Family Poaceae -- ~12,000 species</div>
+      <div class="card-body">Wheat, rice, maize, barley, sorghum, oats, sugarcane, and bamboo are all grasses. Together they supply ~50% of all human calories. Grasses evolved ~55 Ma and their spread ~25 Ma drove the evolution of horses, cattle, antelopes, elephants, and their predators. Bamboo (Bambusoideae) is the fastest-growing plant -- some species grow 91 cm per day.</div>
+      <span class="tag">50% of Human Calories</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌺</span>
+      <div class="card-title">Orchids -- Most Diverse Plant Family</div>
+      <div class="card-sub">~28,000 species -- on every continent except Antarctica</div>
+      <div class="card-body">The largest flowering plant family. Extraordinary pollination specialisations: some mimic female bees (Ophrys), others mimic female flies, wasps, and even fungi. The vanilla orchid (Vanilla planifolia) produces the world's most popular flavour. Ghost orchid (Epipogium aphyllum) has no chlorophyll -- entirely parasitic on fungi. ~28% of orchids are threatened.</div>
+      <span class="tag">28,000 Species</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌱</span>
+      <div class="card-title">Mangroves and Seagrasses</div>
+      <div class="card-sub">Coastal Carbon Vaults</div>
+      <div class="card-body">Mangrove forests cover ~150,000 km2 of tropical coastlines and store 3--5x more carbon per hectare than tropical rainforests ("blue carbon"). Nursery habitat for ~80% of tropical fish species. Seagrasses (72 species) cover ~300,000 km2 of seafloor and capture carbon 35x faster than tropical forests per unit area. Both are critically threatened by coastal development.</div>
+      <span class="tag">Blue Carbon Vaults</span>
+    </div>
+
+  <hr class="rule">
+  <h3 class="sub-title">Photosynthesis -- The Equation That Built the World</h3>
+  <div class="card" style="max-width:600px">
+    <div class="card-body" style="font-family:var(--serif);font-size:1.25rem;font-style:italic;text-align:center;padding:1rem 0;">6 CO2 + 6 H2O + light energy &#8594; C6H12O6 + 6 O2</div>
+    <div class="card-body" style="margin-top:1rem">Carbon dioxide and water, powered by photons, become glucose and oxygen. Performed by every green plant, every alga, and every cyanobacterium. In 3.5 billion years it transformed a toxic reducing atmosphere into the oxygen-rich air that every animal depends on. The most consequential chemical reaction in the history of the biosphere.</div>
+  </div>
+</section>
+
+<hr class="rule" style="max-width:1100px;margin:0 auto">
+
+<!-- FAUNA -->
+<section id="fauna">
+  <svg class="glyph" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="22" rx="12" ry="9" stroke="#87A878" stroke-width="1.5"/><circle cx="28" cy="14" r="4" stroke="#2E5D3F" stroke-width="1.5"/><path d="M10 20 C6 16 6 10 10 12" stroke="#2E5D3F" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <p class="sec-label">Kingdom Animalia</p>
+  <h2 class="sec-title">Fauna -- <em>All Living Creatures</em></h2>
+  <p class="sec-lead">No discrimination. Every species from the insects that outnumber stars to the great apes whose eyes reflect something uncomfortably like our own. All of them, here.</p>
+
+  <table class="taxa-table" aria-label="Animal kingdoms">
+    <thead><tr><th>Group</th><th>Described Species</th><th>Threatened</th><th>Key Fact</th></tr></thead>
+    <tbody>
+      <tr><td>Mammals</td><td>6,736</td><td class="pct high">27%</td><td>Includes apes, whales, bats, rodents, marsupials</td></tr>
+      <tr><td>Birds</td><td>~11,017</td><td class="pct low">11.5%</td><td>Living dinosaurs -- every bird is an avian theropod</td></tr>
+      <tr><td>Reptiles</td><td>12,386</td><td class="pct med">21%</td><td>Snakes, lizards, crocodilians, turtles, tuatara</td></tr>
+      <tr><td>Amphibians</td><td>~8,600</td><td class="pct high">41%</td><td>Most imperiled vertebrate group on Earth</td></tr>
+      <tr><td>Fish</td><td>~35,000</td><td class="pct med">26% freshwater</td><td>More species than all other vertebrates combined</td></tr>
+      <tr><td>Insects</td><td>~1,000,000</td><td class="pct low">16% assessed</td><td>Est. 5.5 million total species (Stork 2018)</td></tr>
+      <tr><td>Arachnids</td><td>~45,000</td><td>Poorly assessed</td><td>Spiders, scorpions, mites, harvestmen, ticks</td></tr>
+      <tr><td>Crustaceans</td><td>~67,000</td><td class="pct med">28%</td><td>Crabs, lobsters, shrimps, barnacles, copepods</td></tr>
+      <tr><td>Mollusks</td><td>~85,000</td><td class="pct high">32%</td><td>Octopus, squid, snails, clams, nudibranchs</td></tr>
+      <tr><td>Echinoderms</td><td>~7,000</td><td class="pct low">15%</td><td>Sea stars, urchins, sea cucumbers, brittle stars</td></tr>
+      <tr><td>Cnidarians</td><td>~11,000</td><td>Emerging threat</td><td>Corals, jellyfish, sea anemones, hydras</td></tr>
+      <tr><td>Annelids</td><td>~22,000</td><td>Poorly assessed</td><td>Earthworms, polychaetes, leeches -- critical soil engineers</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title">Primates -- Our Family</h3>
+  <div class="species-grid">
+    <div class="sp-card"><div class="sp-name">Western Lowland Gorilla</div><div class="sp-latin">Gorilla gorilla gorilla</div><div class="sp-body">Critically Endangered. Largest living primate -- up to 200kg. Congo Basin. Primarily herbivorous. Highly social, matriarchal. Sharing ~98.4% of DNA with humans. Poaching, habitat loss, and Ebola are primary threats. Wild population estimated at ~100,000 but declining.</div><span class="tag danger">Critically Endangered</span></div>
+    <div class="sp-card"><div class="sp-name">Cross River Gorilla</div><div class="sp-latin">Gorilla gorilla diehli</div><div class="sp-body">Critically Endangered. Rarest great ape -- approximately 250--300 individuals remaining in the Nigeria--Cameroon highlands. Highly fragmented populations. Extinction risk within decades without intervention.</div><span class="tag danger">~250--300 Left</span></div>
+    <div class="sp-card"><div class="sp-name">Sumatran Orangutan</div><div class="sp-latin">Pongo abelii</div><div class="sp-body">Critically Endangered. Most arboreal of all great apes. Builds sleeping nests daily. Tool use -- uses sticks to extract insects and seeds. 14% of all orangutan habitat was destroyed 2000--2012. Palm oil expansion is the primary driver of forest loss.</div><span class="tag danger">Critically Endangered</span></div>
+    <div class="sp-card"><div class="sp-name">Bornean Orangutan</div><div class="sp-latin">Pongo pygmaeus</div><div class="sp-body">Endangered. Three subspecies. Population has declined by more than 50% over the past 60 years. Borneo has lost ~40% of its forest since 1950. Males develop large cheek pads (flanges) and long throat pouches for long-call communication.</div><span class="tag danger">Endangered</span></div>
+    <div class="sp-card"><div class="sp-name">Chimpanzee</div><div class="sp-latin">Pan troglodytes</div><div class="sp-body">Endangered. Four subspecies across equatorial Africa. Tool use, cooperative hunting, social learning, and rudimentary culture. Use stones to crack nuts, sticks to fish for termites. Share ~98.7% DNA with humans. Vocalisations include regional dialects.</div><span class="tag danger">Endangered</span></div>
+    <div class="sp-card"><div class="sp-name">Bonobo</div><div class="sp-latin">Pan paniscus</div><div class="sp-body">Endangered. Found only south of the Congo River, DRC. Society is female-dominant -- unusual among great apes. Known for using social and sexual behaviour to resolve conflict. Highly empathetic -- bonobos share food even with strangers. Population estimated at 10,000--50,000.</div><span class="tag danger">Endangered</span></div>
+    <div class="sp-card"><div class="sp-name">Gelada</div><div class="sp-latin">Theropithecus gelada</div><div class="sp-body">Least Concern but endemic and unique. "Bleeding heart" baboon of the Ethiopian highlands. The only primate that feeds primarily on grass. Lives at 1,800--4,400m altitude. Distinctive bare red chest patch used for social signalling. Forms bands of up to 1,200 individuals.</div><span class="tag">Ethiopian Endemic</span></div>
+    <div class="sp-card"><div class="sp-name">Aye-aye</div><div class="sp-latin">Daubentonia madagascariensis</div><div class="sp-body">Endangered. The strangest primate. An elongated middle finger with a specialised ball-and-socket joint is used for percussive foraging -- tapping on wood to locate hollow chambers, then extracting larvae. Nocturnal, solitary. Madagascar endemic. Considered an omen of death in local Malagasy tradition.</div><span class="tag danger">Endangered</span></div>
+    <div class="sp-card"><div class="sp-name">Proboscis Monkey</div><div class="sp-latin">Nasalis larvatus</div><div class="sp-body">Endangered. Borneo endemic. Males develop an enormous pendulous nose -- up to 10 cm -- used to amplify vocalisations and attract females. Highly specialised gut ferments leaves and neutralises toxins -- cannot digest ripe fruit. Excellent swimmers; cross rivers to avoid predators.</div><span class="tag danger">Endangered</span></div>
+  </div>
+
+  <h3 class="sub-title">Megafauna -- The Great Beasts</h3>
+  <div class="card-grid">
+    <div class="card"><span class="card-icon">🦁</span><div class="card-title">African Lion</div><div class="card-sub">Panthera leo -- Vulnerable</div><div class="card-body">Approximately 20,000 lions remain in sub-Saharan Africa -- down from ~200,000 a century ago. The West African lion (P. l. leo) is Critically Endangered, with fewer than 400 individuals in fragmented populations. Lions are the only truly social big cat -- prides of 3--30. Males hold territories for 2--4 years on average before being displaced.</div><span class="tag warn">~20,000 Remaining</span></div>
+    <div class="card"><span class="card-icon">🐘</span><div class="card-title">African Savanna Elephant</div><div class="card-sub">Loxodonta africana -- Vulnerable</div><div class="card-body">Largest land animal. Up to 7 tonnes. Matriarchal herds led by elder females who memorise water sources and migration routes spanning hundreds of km. Mourn their dead. Self-medicate with plants. Communicate via infrasound across 10+ km. ~415,000 remaining -- declined by ~111,000 in the decade 2006--2016 (ivory poaching). Classified as separate species from Forest Elephant (LC to EN) since 2021.</div><span class="tag warn">Vulnerable</span></div>
+    <div class="card"><span class="card-icon">🦏</span><div class="card-title">Northern White Rhino</div><div class="card-sub">Ceratotherium simum cottoni -- Functionally Extinct</div><div class="card-body">Two females remain -- Najin and Fatu -- in Ol Pejeta Conservancy, Kenya. The last male, Sudan, died in 2018. IVF using stored sperm and eggs is the only hope for the subspecies. Southern White Rhino (NT, ~20,000) pulled back from 50 individuals in the 1890s -- one of conservation's greatest successes.</div><span class="tag danger">2 Left</span></div>
+    <div class="card"><span class="card-icon">🐆</span><div class="card-title">Amur Leopard</div><div class="card-sub">Panthera pardus orientalis -- Critically Endangered</div><div class="card-body">The world's rarest big cat. ~120 individuals in the wild -- Russian Far East and northeast China. Capable of running 58 km/h and leaping 6m horizontally. Keeps its kills cached in trees for up to a week. Conservation breeding and anti-poaching have slowly increased numbers from ~30 in 2007.</div><span class="tag danger">~120 Individuals</span></div>
+    <div class="card"><span class="card-icon">🐼</span><div class="card-title">Giant Panda</div><div class="card-sub">Ailuropoda melanoleuca -- Vulnerable</div><div class="card-body">~1,800 in the wild in the mountain forests of Sichuan, Shaanxi, and Gansu, China. Classified as Vulnerable in 2016, downgraded from Endangered -- a conservation success driven by habitat protection and captive breeding. Eats 12--38 kg of bamboo daily. Despite a carnivore's digestive system, bamboo comprises 99% of diet.</div><span class="tag warn">Vulnerable -- Recovering</span></div>
+    <div class="card"><span class="card-icon">🐯</span><div class="card-title">Tiger</div><div class="card-sub">Panthera tigris -- Endangered</div><div class="card-body">Fewer than 4,500 in the wild -- across 6 remaining subspecies. Bengal (EN, ~3,000), Indochinese (EN), Sumatran (CR, ~400), Siberian/Amur (EN, ~600), South China (possibly extinct in wild), Malayan (CR). Range has contracted by ~93% from historical extent. India holds ~70% of remaining wild tigers.</div><span class="tag danger">Endangered</span></div>
+  </div>
+
+  <h3 class="sub-title">Reptiles and Amphibians</h3>
+  <div class="card-grid">
+    <div class="card"><span class="card-icon">🐊</span><div class="card-title">Saltwater Crocodile</div><div class="card-sub">Crocodylus porosus -- Least Concern</div><div class="card-body">The largest living reptile -- up to 6.3m, 1,000 kg. Can live 70+ years. Survived all five mass extinctions. Crocodilians have been evolutionarily stable for ~85 million years -- a design so functional that natural selection barely improved it. Capable of "death roll" torque force exceeding any other animal bite.</div><span class="tag">85 Ma Unchanged</span></div>
+    <div class="card"><span class="card-icon">🦎</span><div class="card-title">Komodo Dragon</div><div class="card-sub">Varanus komodoensis -- Endangered</div><div class="card-body">The largest living lizard -- up to 3m, 70 kg. Endemic to 5 Indonesian islands. Hunts using forked tongue to detect carrion and prey 9 km away. Venom glands in lower jaw prevent blood clotting. Can reproduce by parthenogenesis -- females can produce offspring without fertilisation. ~1,400 left in the wild.</div><span class="tag danger">~1,400 Left</span></div>
+    <div class="card"><span class="card-icon">🐢</span><div class="card-title">Leatherback Sea Turtle</div><div class="card-sub">Dermochelys coriacea -- Vulnerable</div><div class="card-body">The largest living turtle -- up to 2m, 900 kg. Dives to 1,280m -- deeper than any other reptile. Survives on jellyfish alone; lacks a hard shell (has a cartilaginous carapace). Migrates up to 20,000 km annually. Nesting beaches have declined catastrophically -- Pacific population fell 90% between 1980--2000.</div><span class="tag warn">Vulnerable</span></div>
+    <div class="card"><span class="card-icon">🐸</span><div class="card-title">Panamanian Golden Frog</div><div class="card-sub">Atelopus zeteki -- Critically Endangered</div><div class="card-body">Possibly extinct in the wild. The chytrid fungus (Batrachochytrium dendrobatidis, Bd) has devastated amphibian populations globally -- the most catastrophic infectious disease ever recorded in vertebrates. Bd has caused population declines in at least 500 amphibian species and driven 90 species to extinction. ~41% of all amphibian species are now threatened.</div><span class="tag danger">Possibly Wild Extinct</span></div>
+    <div class="card"><span class="card-icon">🦕</span><div class="card-title">Tuatara</div><div class="card-sub">Sphenodon punctatus -- Least Concern (NZ)</div><div class="card-body">The only surviving member of the order Rhynchocephalia -- a lineage that has persisted for 250 million years, separating from lizards and snakes before the dinosaurs rose. A "living fossil" in the strictest sense. Third eye on top of skull (pineal eye). Lives 100+ years. Found only in New Zealand, reintroduced to mainland after mammalian predator eradication.</div><span class="tag">250 Ma Lineage</span></div>
+    <div class="card"><span class="card-icon">🐍</span><div class="card-title">Green Anaconda</div><div class="card-sub">Eunectes murinus -- Least Concern</div><div class="card-body">The heaviest snake -- up to 250 kg, 9m. Hunts by constriction in Amazonian flooded forests. Not venomous. Ambushes prey including capybaras, deer, caimans, and occasionally jaguars. Females are significantly larger than males -- extreme sexual dimorphism. Males engage in "breeding balls" involving up to 13 males competing for a single female over weeks.</div><span class="tag">Heaviest Snake</span></div>
+  </div>
+
+  <h3 class="sub-title">Birds -- 11,017 Living Dinosaurs</h3>
+  <div class="species-grid">
+    <div class="sp-card"><div class="sp-name">Wandering Albatross</div><div class="sp-latin">Diomedea exulans</div><div class="sp-body">Largest wingspan of any living bird -- up to 3.7m. Circumnavigates the Southern Ocean, covering 120,000 km/year. Can glide for hours without a wingbeat using dynamic soaring. Mates for life (50+ years). Breeds on sub-Antarctic islands every 2 years. Critically threatened by longline fishing bycatch.</div><span class="tag warn">Vulnerable</span></div>
+    <div class="sp-card"><div class="sp-name">Kakapo</div><div class="sp-latin">Strigops habroptilus</div><div class="sp-body">Critically Endangered. The world's heaviest parrot (up to 4 kg) and the only flightless parrot. Nocturnal. Incredibly long-lived (90+ years). New Zealand. Only 247 individuals alive (2024). Each bird is named and individually managed. Only breeds when rimu trees fruit -- every 2--5 years. A remarkable conservation recovery from 51 individuals in 1995.</div><span class="tag danger">247 Individuals</span></div>
+    <div class="sp-card"><div class="sp-name">Emperor Penguin</div><div class="sp-latin">Aptenodytes forsteri</div><div class="sp-body">Tallest and heaviest penguin -- up to 1.2m, 46 kg. Breeds on Antarctic sea ice in -60 degrees C. Males incubate a single egg on their feet for 65 days, fasting throughout, huddling in rotating formations to maintain warmth. Dives to 565m -- deeper than any other bird. Sea ice loss threatens 90%+ of colonies by 2100.</div><span class="tag warn">Vulnerable</span></div>
+    <div class="sp-card"><div class="sp-name">California Condor</div><div class="sp-latin">Gymnogyps californianus</div><div class="sp-body">Critically Endangered. Largest land bird in North America -- 2.9m wingspan. Extinct in the wild by 1987 (22 individuals remained). Captive breeding and reintroduction have brought numbers to ~500. Lead poisoning from ammunition in carcasses remains the primary ongoing threat. Can live 60+ years.</div><span class="tag danger">~500 -- Back from 22</span></div>
+    <div class="sp-card"><div class="sp-name">African Grey Parrot</div><div class="sp-latin">Psittacus erithacus</div><div class="sp-body">Endangered. Considered the most intelligent bird -- demonstrates understanding of object permanence, zero concept, and statistical inference. Alex, a research bird studied by Dr Irene Pepperberg for 30 years, had a functional vocabulary of 150+ words with comprehension. Wild populations devastated by the illegal pet trade.</div><span class="tag danger">Endangered</span></div>
+    <div class="sp-card"><div class="sp-name">Sword-billed Hummingbird</div><div class="sp-latin">Ensifera ensifera</div><div class="sp-body">The only bird with a bill longer than its body. Bill reaches 10.2 cm -- evolved to access nectar of Passiflora mixta and Datura flowers with correspondingly long corollas. A textbook example of co-evolution: the plant and bird are mutually dependent. Andes of South America, 1,700--3,500m altitude.</div><span class="tag">Extreme Co-evolution</span></div>
+  </div>
+
+  <h3 class="sub-title">Insects -- The Dominant Animals</h3>
+  <div class="card-grid">
+    <div class="card"><span class="card-icon">🐝</span><div class="card-title">Bees</div><div class="card-sub">~20,000 species -- Critical Pollinators</div><div class="card-body">Honey bees (Apis mellifera) pollinate crops worth ~$577 billion annually. The blue orchard mason bee is 120x more efficient than honey bees for apple pollination. Bumblebees (250 species) use "buzz pollination" -- sonication -- to extract pollen from tomato flowers. North American bee populations have declined ~25% since 1990. Colony Collapse Disorder has destroyed ~30% of US honey bee colonies annually since 2006.</div><span class="tag warn">25% Decline</span></div>
+    <div class="card"><span class="card-icon">🦋</span><div class="card-title">Monarch Butterfly</div><div class="card-sub">Danaus plexippus -- Endangered</div><div class="card-body">Annual migration of up to 4,000 km between Canada/US and Mexican overwintering forests -- the longest insect migration known. How they navigate is still not fully understood; involves a sun compass and possibly magnetic sensing. Population at Mexican overwintering sites declined ~80% over 20 years. Milkweed loss and climate change are primary drivers.</div><span class="tag danger">80% Decline</span></div>
+    <div class="card"><span class="card-icon">🐜</span><div class="card-title">Ants</div><div class="card-sub">~20,000 species -- Ecological Engineers</div><div class="card-body">By biomass, ants may represent ~20% of all animal biomass on land. Move more soil than earthworms in many ecosystems. Leafcutter ants cultivate fungi -- the world's oldest agriculture, predating human farming by 50 million years. Army ants (Eciton) form living bridges, bivouacs, and raid fronts of 200,000 workers. Supercolonies of the Argentine ant span continents.</div><span class="tag">20% of Land Animal Biomass</span></div>
+    <div class="card"><span class="card-icon">🪲</span><div class="card-title">Beetles</div><div class="card-sub">~400,000 species -- Most Diverse Order</div><div class="card-body">When J.B.S. Haldane was asked what can be inferred about God from creation, he reputedly said "an inordinate fondness for beetles." One in four described animal species is a beetle (Order Coleoptera). Occur in every habitat except open ocean and polar ice. Dung beetles (Scarabaeidae) navigate using the Milky Way -- the first animal proven to use the galaxy for orientation.</div><span class="tag">1 in 4 Animals is a Beetle</span></div>
+  </div>
+</section>
+
+<hr class="rule" style="max-width:1100px;margin:0 auto">
+
+<!-- OCEAN -->
+<section id="ocean" style="--c-primary:#1F4E6B;--c-accent:#4A90A4;--c-tag:#D0EAF0;--c-tag-text:#1F4E6B">
+  <svg class="glyph" viewBox="0 0 40 40" fill="none"><path d="M4 24 Q10 18 16 24 Q22 30 28 24 Q34 18 40 24" stroke="#4A90A4" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M4 30 Q10 24 16 30 Q22 36 28 30 Q34 24 40 30" stroke="#1F4E6B" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+  <p class="sec-label" style="color:#4A90A4">The Blue Planet</p>
+  <h2 class="sec-title">Ocean -- <em>The Deep Unknown</em></h2>
+  <p class="sec-lead">The ocean covers 71% of Earth. We have better maps of Mars than of the seabed. Only 0.001% of the deep ocean floor has ever been seen by human eyes. It is the last great wilderness -- and it is dying faster than we can document it.</p>
+  <div class="stat-grid">
+    <dl class="stat-card"><dd>71%</dd><dt>Of Earth's surface is ocean</dt></dl>
+    <dl class="stat-card"><dd>0.001%</dd><dt>Of deep seafloor visually observed (2025)</dt></dl>
+    <dl class="stat-card"><dd>25%</dd><dt>Of marine species live on coral reefs</dt></dl>
+    <dl class="stat-card"><dd>84%</dd><dt>Of reefs experienced bleaching 2023--2025</dt></dl>
+    <dl class="stat-card"><dd>44%</dd><dt>Of reef-building corals now threatened</dt></dl>
+    <dl class="stat-card"><dd>38%</dd><dt>Of sharks, rays and chimeras threatened</dt></dl>
+  </div>
+
+  <h3 class="sub-title" style="color:var(--c-ocean)">Ocean Depth Zones</h3>
+  <ul class="depth-list" aria-label="Ocean depth zones">
+    <li><div class="depth-zone">Sunlight Zone</div><div class="depth-range">0 -- 200m</div><div class="depth-body">Epipelagic zone. Receives sunlight -- site of all photosynthesis. Most ocean life is concentrated here. Coral reefs, kelp forests, sea turtles, dolphins, flying fish, tuna.</div></li>
+    <li><div class="depth-zone">Twilight Zone</div><div class="depth-range">200 -- 1,000m</div><div class="depth-body">Mesopelagic. Dim light, no photosynthesis. Many animals migrate vertically -- feeding in the sunlight zone at night, hiding in the dark by day. Lanternfish, hatchetfish, siphonophores. One of Earth's largest fish biomass layers.</div></li>
+    <li><div class="depth-zone">Midnight Zone</div><div class="depth-range">1,000 -- 4,000m</div><div class="depth-body">Bathypelagic. Complete darkness. Bioluminescence is the only light. Anglerfish, sperm whales (diving), deep-sea squid, vampire squid. Water temperature 4 degrees C. Pressure 100--400 atmospheres.</div></li>
+    <li><div class="depth-zone">Abyssal Zone</div><div class="depth-range">4,000 -- 6,000m</div><div class="depth-body">Abyssopelagic. Covers ~60% of Earth's surface -- the largest habitat on the planet. Near-freezing water, crushing pressure, complete darkness, slow "marine snow" of organic particles drifting down. Sea cucumbers, brittle stars, polychaete worms, foraminifera.</div></li>
+    <li><div class="depth-zone">Hadal Zone</div><div class="depth-range">6,000 -- 11,034m</div><div class="depth-body">Ocean trenches only. The Challenger Deep in the Mariana Trench (10,935m) is the deepest known point -- if Everest were placed there it would be 2km underwater. Life exists even here: amphipod crustaceans, polychaetes, foraminifera. Plastic has been found at every depth sampled.</div></li>
+  </ul>
+
+  <h3 class="sub-title" style="color:var(--c-ocean)">Remarkable Ocean Species</h3>
+  <div class="species-grid">
+    <div class="sp-card"><div class="sp-name">Blue Whale</div><div class="sp-latin">Balaenoptera musculus</div><div class="sp-body">The largest animal ever to have existed -- up to 33m, 190 tonnes. Heart the size of a small car. Calls reaching 188 decibels -- the loudest of any animal. Eat 4 tonnes of krill daily in summer. Endangered. Numbers ~10,000--25,000 (rebuilt from ~360 in 1960s following commercial whaling).</div><span class="tag blue">Largest Animal Ever</span></div>
+    <div class="sp-card"><div class="sp-name">Sperm Whale</div><div class="sp-latin">Physeter macrocephalus</div><div class="sp-body">Largest toothed predator. Dives to 3,000m, holding breath for 90 minutes, to hunt giant squid. Has the largest brain of any animal. Clicks (codas) are complex social communication -- Project CETI is using AI to decode them. Carries a waxy oil called spermaceti in a massive head cavity -- possibly for echolocation focusing.</div><span class="tag blue">Largest Brain</span></div>
+    <div class="sp-card"><div class="sp-name">Giant Pacific Octopus</div><div class="sp-latin">Enteroctopus dofleini</div><div class="sp-body">The world's largest octopus -- arm span up to 9m. Three hearts, blue blood (haemocyanin). Two-thirds of neurons in their arms, not their brain. Can change colour, texture, and pattern in 0.3 seconds. Opens jars, solves multi-step puzzles, plays. Lives only 3--5 years despite remarkable intelligence.</div><span class="tag blue">Distributed Intelligence</span></div>
+    <div class="sp-card"><div class="sp-name">Whale Shark</div><div class="sp-latin">Rhincodon typus</div><div class="sp-body">Largest fish -- up to 18m, 19 tonnes. Feeds by filter-feeding -- engulfing plankton, fish eggs, and small fish. Has 3,000 tiny teeth (vestigial) and eyes with photoreceptors on its skin. Endangered -- slow reproduction (maturity at 25--30 years). The world's largest known aggregation (~400 individuals) occurs off Yucatan during whale shark season.</div><span class="tag blue">Largest Fish</span></div>
+    <div class="sp-card"><div class="sp-name">Mantis Shrimp</div><div class="sp-latin">Stomatopoda (order)</div><div class="sp-body">Sight unlike any other animal -- 16 types of photoreceptors (humans have 3). Can detect UV, infrared, and circular polarised light. Club-type mantis shrimps strike at 23m/s -- 10,000x the acceleration of a bullet -- generating cavitation bubbles that implode with sufficient force to stun prey. Strike force comparable to a .22 calibre bullet.</div><span class="tag blue">16-Color Vision</span></div>
+    <div class="sp-card"><div class="sp-name">Mimic Octopus</div><div class="sp-latin">Thaumoctopus mimicus</div><div class="sp-body">The only known animal that can dynamically mimic multiple different species. Impersonates lionfish, flatfish, and sea snakes -- choosing based on context. Discovered only in 1998 off Sulawesi, Indonesia. Demonstrates higher-order cognitive flexibility: not a fixed response but deliberate selection of the most appropriate mimic for the current predator.</div><span class="tag blue">Discovered 1998</span></div>
+    <div class="sp-card"><div class="sp-name">Coral</div><div class="sp-latin">Order Scleractinia (stone corals)</div><div class="sp-body">~1,600 reef-building coral species. Each coral polyp is a tiny animal -- related to jellyfish. Lives in symbiosis with photosynthetic algae (zooxanthellae) that provide 90% of the coral's energy. When sea temperature rises by 1 degree C for extended periods, corals expel their algae ("bleaching") and die. 84% of the world's reefs bleached between Jan 2023 and Mar 2025 (ICRI/NOAA).</div><span class="tag blue">84% Bleached 2023--25</span></div>
+    <div class="sp-card"><div class="sp-name">Immortal Jellyfish</div><div class="sp-latin">Turritopsis dohrnii</div><div class="sp-body">The only known biologically immortal animal. When stressed or aged, it reverts to its juvenile polyp state -- transdifferentiation. Can repeat the cycle indefinitely. Discovered in the 1990s. Now globally distributed via ballast water. Does not mean it cannot die -- predation, disease, and injury still kill it -- but it has no intrinsic lifespan limit.</div><span class="tag blue">Biologically Immortal</span></div>
+    <div class="sp-card"><div class="sp-name">Hydrothermal Vent Life</div><div class="sp-latin">Multiple phyla</div><div class="sp-body">Discovered in 1977 by the Alvin submersible at the Galapagos Rift. Entire ecosystems powered by chemosynthesis -- no sunlight required. Giant tube worms (Riftia pachyptila) up to 3m, growing the fastest of any marine invertebrate. Vent shrimp with light-sensitive patches on their backs to detect the faint glow of vent emissions. Life beyond photosynthesis.</div><span class="tag blue">No Sunlight Needed</span></div>
+  </div>
+</section>
+
+<hr class="rule" style="max-width:1100px;margin:0 auto">
+
+<!-- SYSTEMS -->
+<section id="systems">
+  <svg class="glyph" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#87A878" stroke-width="1.5" stroke-dasharray="4 2"/><path d="M20 4 C28 12 28 28 20 36 C12 28 12 12 20 4Z" stroke="#2E5D3F" stroke-width="1.5" fill="none"/></svg>
+  <p class="sec-label">Earth Systems Science</p>
+  <h2 class="sec-title">Systems -- <em>How Earth Breathes</em></h2>
+  <p class="sec-lead">The invisible machinery. Oxygen, water, carbon, nitrogen -- cycling endlessly through rock, air, ocean, and every living cell. Disrupt one cycle and every other shifts in response.</p>
+
+  <p style="font-size:.83rem;color:var(--c-ink-soft);margin-bottom:.4rem;font-style:italic">Atmospheric Composition (dry air by volume)</p>
+  <div class="atmo-bar" role="img" aria-label="Earth atmospheric composition">
+    <div class="atmo-seg" style="flex:78.08;background:#2C3E6B">N2 78.08%</div>
+    <div class="atmo-seg" style="flex:20.95;background:#2E5D3F">O2 20.95%</div>
+    <div class="atmo-seg" style="flex:0.93;background:#7A6E50;font-size:.6rem">Ar</div>
+    <div class="atmo-seg" style="flex:0.04;background:#8B3A3A;font-size:.55rem">CO2</div>
+  </div>
+  <div class="atmo-legend">
+    <span>Nitrogen (N2) -- 78.08%</span>
+    <span>Oxygen (O2) -- 20.95%</span>
+    <span>Argon -- 0.93%</span>
+    <span>CO2 -- 0.04% (rising -- was 0.028% pre-industrial)</span>
+  </div>
+
+  <div class="cycle-grid" style="margin-top:2.5rem">
+    <div class="cycle-card"><div class="cycle-num">O2</div><div class="cycle-title">Oxygen Cycle</div><div class="cycle-body">~50% of atmospheric oxygen is produced by marine phytoplankton (NOAA). Prochlorococcus, the smallest photosynthesizer, accounts for up to 20% alone. Terrestrial plants produce the remainder. Important clarification: the Amazon's gross O2 production is large, but its decomposition and respiration consume an equal amount -- the net contribution to atmospheric O2 is approximately zero (NASA/FactCheck.org). The O2 we breathe is primarily a product of ocean phytoplankton.</div></div>
+    <div class="cycle-card"><div class="cycle-num">H2O</div><div class="cycle-title">Water Cycle (Hydrological Cycle)</div><div class="cycle-body">Solar energy evaporates water from oceans (~86% of total evaporation), lakes, rivers, and land. Plants transpire enormous quantities -- a single large oak releases 400 litres per day. Water vapour rises, cools, condenses into clouds, and precipitates as rain, snow, or hail. Runoff feeds rivers; infiltration feeds groundwater aquifers. The same water molecules have cycled through this system for 4 billion years.</div></div>
+    <div class="cycle-card"><div class="cycle-num">C</div><div class="cycle-title">Carbon Cycle</div><div class="cycle-body">Carbon moves between four reservoirs: atmosphere, biosphere (living organisms), hydrosphere (ocean absorbs ~25% of human CO2 emissions), and lithosphere (fossil fuels, limestone). Amazon trees store ~100 billion tonnes. Soils store ~3x more carbon than the atmosphere. Since 1750, atmospheric CO2 has risen from 280 ppm to ~425 ppm (2026) -- a 52% increase and the fastest sustained increase in at least 800,000 years of ice-core records.</div></div>
+    <div class="cycle-card"><div class="cycle-num">N</div><div class="cycle-title">Nitrogen Cycle</div><div class="cycle-body">78% of air is N2, but most organisms cannot use it directly. Nitrogen-fixing bacteria (Rhizobium in legume root nodules; free-living Azotobacter) convert N2 to ammonia. Nitrifying bacteria convert ammonia to nitrates -- the form plants absorb. Denitrifying bacteria return N2 to the atmosphere. Human application of synthetic nitrogen fertiliser (Haber-Bosch process) has doubled the amount of biologically available nitrogen on Earth, with profound ecological consequences.</div></div>
+    <div class="cycle-card"><div class="cycle-num">P</div><div class="cycle-title">Phosphorus Cycle</div><div class="cycle-body">Unlike N and C, phosphorus has no significant atmospheric phase -- it cycles only through rock, soil, water, and organisms. Weathering of phosphate rock releases phosphorus into soil; plants absorb it; animals eat plants; organisms die and decompose; phosphorus returns to soil or washes to the ocean and ultimately settles as sediment. A slow cycle -- millions of years for deep ocean phosphorus to return to land. Often the limiting nutrient in freshwater ecosystems.</div></div>
+    <div class="cycle-card"><div class="cycle-num">Sol</div><div class="cycle-title">Solar Energy and Food Webs</div><div class="cycle-body">Solar energy enters the biosphere through photosynthesis. Only ~1--3% of incident solar energy is captured. Each trophic level transfers ~10% of energy to the next (Lindeman's 10% rule) -- explaining why food chains rarely exceed 5 levels and why carnivores are always rarer than herbivores. Decomposers (fungi, bacteria) return nutrients from dead organic matter to the soil, completing the cycle.</div></div>
+    <div class="cycle-card"><div class="cycle-num">Soil</div><div class="cycle-title">Soil -- The Living Foundation</div><div class="cycle-body">A single teaspoon of healthy forest soil contains more living organisms than there are people on Earth: ~10,000 species of bacteria, 5,000 fungi, 1,000 protozoa. Topsoil takes ~500 years per 2.5 cm to form. ~33% of Earth's soil is moderately to highly degraded (FAO 2015). Soil organic carbon stores 2--3x more carbon than the atmosphere. Without soil microbial activity, virtually no land ecosystem functions.</div></div>
+    <div class="cycle-card"><div class="cycle-num">Ice</div><div class="cycle-title">Cryosphere</div><div class="cycle-body">Ice sheets (Antarctica: 26.5M km3; Greenland: 2.85M km3), glaciers, permafrost, and sea ice. Antarctica's ice sheet contains ~70% of Earth's fresh water -- if melted, sea level would rise ~58m. Arctic sea ice has declined ~13% per decade since 1979 (satellite records). Permafrost contains ~1.5 trillion tonnes of frozen organic carbon -- twice the current atmospheric carbon. Thawing permafrost is a major positive feedback risk.</div></div>
+  </div>
+
+  <hr class="rule">
+  <h3 class="sub-title">Biomes of Earth</h3>
+  <div class="card-grid">
+    <div class="card"><div class="card-title">Tropical Rainforest</div><div class="card-sub">~6% of land -- ~50% of all species</div><div class="card-body">Amazon (5.5M km2), Congo (3.3M km2), Southeast Asian. 25--40 metres of precipitation annually. The Amazon alone holds ~16,000 tree species and 3 million species overall. Canopy layers create multiple microhabitats. Primary forest cannot be replanted -- the mycorrhizal complexity of old-growth forest takes centuries to develop.</div></div>
+    <div class="card"><div class="card-title">Boreal Forest (Taiga)</div><div class="card-sub">Largest land biome -- 17M km2</div><div class="card-body">Circumpolar conifer belt across Russia (Siberian taiga), Canada, and Scandinavia. Stores ~30% of all terrestrial carbon. Dominated by spruce, pine, fir, and larch. Long cold winters; short growing seasons. Wolf, brown bear, lynx, moose, wolverine. Rapidly warming -- fires and permafrost thaw are releasing sequestered carbon.</div></div>
+    <div class="card"><div class="card-title">Grasslands and Savannas</div><div class="card-sub">~40% of ice-free land surface</div><div class="card-body">African savanna, South American cerrado, North American prairie, Eurasian steppe. Support the world's largest terrestrial migrations -- wildebeest (1.3 million), Mongolian gazelle. Deep root systems store carbon below ground -- grasslands may be more resilient carbon sinks than forests under climate change. 49% of grasslands have been converted to cropland globally.</div></div>
+    <div class="card"><div class="card-title">Desert and Xeric Shrubland</div><div class="card-sub">~33% of land surface</div><div class="card-body">The Sahara (9M km2), Arabian Desert, Gobi, Atacama. Not lifeless -- the Namib Desert has been continuously arid for 55 million years and hosts extraordinary endemic life (Welwitschia lives 1,000--2,000 years). The driest place on Earth, the Atacama, received measurable rain in 2015 for the first time in recorded history -- and dormant flower seeds erupted within days.</div></div>
+    <div class="card"><div class="card-title">Wetlands</div><div class="card-sub">~9M km2 -- 40% of all species dependent</div><div class="card-body">Swamps, marshes, bogs, mangroves, estuaries, floodplains. Cover ~6% of land but support ~40% of all species and provide ecosystem services worth $47 trillion annually (more per hectare than any other biome). Absorb 5x more carbon per hectare than tropical rainforest. 35% of natural wetlands lost since 1970 -- faster than any other ecosystem.</div></div>
+    <div class="card"><div class="card-title">Freshwater Systems</div><div class="card-sub">~2.5% of all water -- 10% of all species</div><div class="card-body">Rivers, lakes, streams, and groundwater contain only 2.5% of Earth's water, yet support ~10% of all known species including ~35,000 fish species. The Amazon River discharges 20% of all river water entering Earth's oceans. The Congo River is the world's deepest (220m) and has the highest discharge of any river in Africa. Lake Baikal holds 20% of all surface freshwater on Earth.</div></div>
+  </div>
+</section>
+
+<!-- EVENTS DARK -->
+<section id="events" class="full-bleed">
+  <div class="section-inner">
+    <svg class="glyph" viewBox="0 0 40 40" fill="none"><path d="M20 4 L36 34 H4 Z" stroke="#B0392B" stroke-width="1.5" fill="none"/><path d="M20 16 V24 M20 28 V30" stroke="#D6A84A" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p class="sec-label">Catastrophe and Extinction</p>
+    <h2 class="sec-title">Events -- <em>When Earth Strikes Back</em></h2>
+    <p class="sec-lead">Five times in deep history, life on Earth was nearly erased. Each time, it returned -- transformed. A sixth event is underway. It moves faster than any that came before it, and for the first time, its cause has a name.</p>
+    <div class="stat-grid">
+      <dl class="stat-card"><dd>96%</dd><dt>Species lost in the worst extinction (End-Permian)</dt></dl>
+      <dl class="stat-card"><dd>99.9%</dd><dt>Of all species that ever lived are now extinct</dt></dl>
+      <dl class="stat-card"><dd>73%</dd><dt>Decline in monitored wildlife populations 1970--2020</dt></dl>
+      <dl class="stat-card"><dd>1,000x</dd><dt>Current extinction rate above natural background</dt></dl>
+    </div>
+
+    <h3 class="sub-title">The Five Mass Extinctions</h3>
+    <ul class="extinction-list" aria-label="Five mass extinctions">
+      <li><div class="ext-name">End-Ordovician</div><div class="ext-date">~445 Ma</div><div class="ext-loss">~85% marine species</div><div class="ext-trigger">Ice age; glaciation of Gondwana; sea level collapse of 50--100m</div></li>
+      <li><div class="ext-name">Late Devonian</div><div class="ext-date">~372 Ma</div><div class="ext-loss">~75% of species</div><div class="ext-trigger">Ocean anoxia sustained over ~20 million years; possibly multiple pulses; tree evolution and soil formation may have triggered nutrient runoff</div></li>
+      <li><div class="ext-name">End-Permian "Great Dying"</div><div class="ext-date">~252 Ma</div><div class="ext-loss">96% of species / 56% of genera / 57% of families</div><div class="ext-trigger">Siberian Traps -- 1 million years of continuous volcanism; ocean acidification; deoxygenation; global temperature rise of ~10 degrees C</div></li>
+      <li><div class="ext-name">End-Triassic</div><div class="ext-date">~201 Ma</div><div class="ext-loss">~70--80% of species</div><div class="ext-trigger">Central Atlantic Magmatic Province (CAMP) volcanism as Pangaea rifted; cleared ecological space for dinosaur dominance of Jurassic</div></li>
+      <li><div class="ext-name">End-Cretaceous (K-Pg)</div><div class="ext-date">66 Ma</div><div class="ext-loss">76% of all species</div><div class="ext-trigger">Chicxulub asteroid impact (10--20 km, 120-mile crater, Yucatan) plus coincident Deccan Traps volcanism; nuclear winter lasting years; ocean acidification</div></li>
+    </ul>
+
+    <hr class="rule">
+    <h3 class="sub-title">Earth Events -- Forces of Nature</h3>
+    <div class="events-cards">
+      <div class="event-card"><span class="ec-icon">🌋</span><div class="ec-title">Volcanoes</div><div class="ec-body">~1,350 potentially active volcanoes worldwide. 50--70 erupt each year. The Siberian Traps (End-Permian, ~252 Ma) erupted continuously for ~1 million years, releasing enough CO2 and SO2 to acidify the ocean and heat the atmosphere by 10 degrees C. Krakatoa (1883) killed 36,000 people and lowered global temperatures by 1.2 degrees C for 5 years. Yellowstone's last supereruption (~631,000 ya) deposited ash across half of North America.</div><div class="ec-stat">Tambora 1815: coldest year in recorded history followed</div></div>
+      <div class="event-card"><span class="ec-icon">🌊</span><div class="ec-title">Tsunamis</div><div class="ec-body">Generated by undersea earthquakes, submarine landslides, or volcanic collapse. The 2004 Indian Ocean tsunami (Mw 9.1--9.3) killed 230,000+ people across 14 countries -- the deadliest natural disaster of the 21st century. Generated by a 1,200 km fault rupture. Waves reached 30m in Aceh, Indonesia. Travel across entire oceans at 800 km/h -- jet aircraft speed -- in deep water.</div><div class="ec-stat">2004: 230,000+ dead across 14 countries</div></div>
+      <div class="event-card"><span class="ec-icon">🌏</span><div class="ec-title">Earthquakes</div><div class="ec-body">~500,000 detectable earthquakes annually. ~100 are felt. ~20 cause major damage. The 1960 Valdivia earthquake (Mw 9.5, Chile) remains the most powerful ever recorded. The Earth's tectonic system has opened every ocean, built every mountain range, and driven the evolutionary isolation that created much of Earth's biodiversity. Every continent is moving -- at the speed fingernails grow.</div><div class="ec-stat">1960 Valdivia: Mw 9.5 -- strongest recorded</div></div>
+      <div class="event-card"><span class="ec-icon">🔥</span><div class="ec-title">Wildfires</div><div class="ec-body">Australia's 2019--2020 bushfires burned ~73,000 sq mi -- an area larger than Syria -- and affected approximately 3 billion animals (WWF). Canada's 2023 wildfires burned 18 million hectares -- the worst in recorded history, releasing more CO2 in a single season than Canada typically emits in a decade. Climate change is extending fire seasons on every forested continent and increasing the frequency of "megafires."</div><div class="ec-stat">~3 billion animals affected -- Australia 2020</div></div>
+      <div class="event-card"><span class="ec-icon">🌀</span><div class="ec-title">Hurricanes and Cyclones</div><div class="ec-body">Tropical cyclones draw energy from warm ocean surface water. ~80--90 named tropical storms form annually. Category 5 storms have been intensifying -- warmer oceans provide more energy. Hurricane Patricia (2015, Eastern Pacific) reached 345 km/h winds -- the strongest ever recorded. Storm surges are the primary killer; a 1970 Bangladesh cyclone killed ~500,000 in a single event.</div><div class="ec-stat">Patricia 2015: 345 km/h -- strongest ever</div></div>
+      <div class="event-card"><span class="ec-icon">🌊</span><div class="ec-title">Floods</div><div class="ec-body">The deadliest natural disaster category historically. The 1931 China floods (Huai and Yellow rivers) killed 1--4 million people. The 2022 Pakistan floods submerged one-third of the country, affecting 33 million people. Google Flood Hub now provides 7-day advance warning in 80+ countries. Extreme precipitation events are increasing in frequency as a warmer atmosphere holds 7% more water per degree C of warming (Clausius-Clapeyron).</div><div class="ec-stat">2022 Pakistan: one-third of country submerged</div></div>
+      <div class="event-card"><span class="ec-icon">❄</span><div class="ec-title">Ice Ages and Glaciations</div><div class="ec-body">Earth has experienced at least 5 major glacial periods in its history. The Pleistocene (2.6 Ma -- 11,700 ya) featured ~50 glacial cycles. At the Last Glacial Maximum (~20,000 ya), ice sheets 3--4 km thick covered northern Europe and North America. Sea levels were 120m lower -- Britain was connected to Europe; Bering Land Bridge linked Asia to America. We are in an interglacial now. Without human CO2 emissions, the next glacial cycle would begin in ~50,000 years.</div><div class="ec-stat">Last Maximum: sea level 120m lower</div></div>
+      <div class="event-card"><span class="ec-icon">☄</span><div class="ec-title">Asteroid Impacts</div><div class="ec-body">The Chicxulub impactor (66 Ma) was 10--20 km wide and released energy equivalent to 1 billion nuclear bombs. The crater (180 km diameter, Yucatan) is still visible. Earth has ~190 confirmed impact craters. The Chelyabinsk meteor (2013, Russia) was 20m, released 30x the energy of Hiroshima, and injured 1,500 people from shockwave glass. Near-Earth object tracking detects ~3 new potentially hazardous asteroids weekly.</div><div class="ec-stat">Chicxulub: 1 billion nuclear bombs equivalent</div></div>
+    </div>
+
+    <div class="sixth-box">
+      <h3>The Sixth Extinction -- <em>Now</em></h3>
+      <p>A geological mass extinction requires the loss of 75% or more of species. We are not there yet. But the current rate of species loss is 100 to 1,000 times the natural background rate (Dasgupta 2021) -- the fastest sustained acceleration in the fossil record outside the five canonical events. The cause is unambiguous: habitat destruction, overexploitation, pollution, invasive species, and climate change, all driven by one species.</p>
+      <p>The WWF Living Planet Report 2024, based on 35,000 population trends across 5,495 species, documents a 73% average decline in monitored wildlife populations between 1970 and 2020. This is not yet extinction -- it is the draining of life before extinction. The signal is clear.</p>
+      <p>The ocean is acidifying at a rate 10 times faster than at any point in the past 66 million years. Insect populations in some monitored regions have declined by 75% in less than 30 years (Krefeld entomological study, Germany, 2017). Freshwater vertebrates have declined by an average of 83% since 1970. The Amazon is approaching a tipping point beyond which it may transition from rainforest to savanna, releasing its stored carbon and accelerating the very change driving it.</p>
+      <p style="font-size:.8rem;color:#6E6E6E;font-style:italic">Note: The "Sixth Extinction" designation is contested among scientists. The case rests on extinction rate, not yet magnitude. The background geological extinction rate is approximately 0.1 species per million species-years. Current observed rates are orders of magnitude higher. Whether this constitutes a mass extinction event by geological standards depends on timescale -- but on any human timescale, it is catastrophic.</p>
+      <div class="sixth-stats">
+        <div class="ss-item"><div class="ss-num">73%</div><div class="ss-label">Wildlife population decline 1970--2020</div></div>
+        <div class="ss-item"><div class="ss-num">83%</div><div class="ss-label">Freshwater vertebrate decline since 1970</div></div>
+        <div class="ss-item"><div class="ss-num">75%</div><div class="ss-label">Insect decline in some monitored regions</div></div>
+        <div class="ss-item"><div class="ss-num">1,000x</div><div class="ss-label">Above background extinction rate</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTELLIGENCE -->
+<section id="intelligence">
+  <svg class="glyph" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="8" stroke="#2E5D3F" stroke-width="1.5"/><path d="M20 4 V8 M20 32 V36 M4 20 H8 M32 20 H36" stroke="#87A878" stroke-width="1.5" stroke-linecap="round"/><path d="M8.7 8.7 L11.5 11.5 M28.5 28.5 L31.3 31.3 M31.3 8.7 L28.5 11.5 M11.5 28.5 L8.7 31.3" stroke="#87A878" stroke-width="1" stroke-linecap="round"/></svg>
+  <p class="sec-label">AI x Nature</p>
+  <h2 class="sec-title">Intelligence -- <em>AI for the Planet</em></h2>
+  <p class="sec-lead">Artificial intelligence is no longer a future promise for conservation. It is deployed, operational, and already changing the odds for species on the edge. This is the most hopeful section of this library.</p>
+  <div class="ai-table-wrap">
+    <table class="ai-table" aria-label="AI for nature deployed projects">
+      <thead><tr><th>Project</th><th>Organization</th><th>Domain</th><th>Key Impact</th></tr></thead>
+      <tbody>
+        <tr><td>Wildlife Insights / SpeciesNet</td><td>WWF + Google</td><td><span class="domain-tag">Species ID</span></td><td>65M+ training images. Detects animals in 99.4% of images; 98.7% precision; 94.5% species-level accuracy. Open-source -- any wildlife camera operator can use it. Processes in seconds what took experts months.</td></tr>
+        <tr><td>iNaturalist</td><td>Cal Academy + Nat Geo</td><td><span class="domain-tag">Citizen Science</span></td><td>300 million observations confirmed spring 2026 (18th birthday milestone). 7,000 linked scientific publications. 400,000 monthly active users across 180+ countries. AI identifies species from photos. Feeds GBIF and IUCN assessments directly.</td></tr>
+        <tr><td>Merlin Bird ID + eBird</td><td>Cornell Lab of Ornithology</td><td><span class="domain-tag">Birds</span></td><td>AI-powered photo and sound bird identification for non-experts. eBird receives 100 million bird observations per year -- the largest biodiversity citizen-science database in existence. Powers range maps and migration forecasting.</td></tr>
+        <tr><td>PAWS</td><td>Harvard / CMU (Tambe/Fang)</td><td><span class="domain-tag">Anti-Poaching</span></td><td>Game-theory AI predicts poaching patrol routes to maximise coverage. Integrated with SMART conservation software -- deployed across 800+ protected areas worldwide. Shown to significantly increase poaching detection rates in field trials.</td></tr>
+        <tr><td>Global Forest Watch</td><td>WRI + Google DeepMind</td><td><span class="domain-tag">Forests</span></td><td>4M+ users. 30m resolution Hansen tree-loss data. GLAD/RADD weekly deforestation alerts down to single-hectare scale. New 1-km drivers-of-tree-loss model (DeepMind, 2025). 4.3M hectares of tropical primary forest lost in 2025 -- approx. 11 football pitches per minute.</td></tr>
+        <tr><td>Forest Foresight (WWF-NL)</td><td>WWF Netherlands</td><td><span class="domain-tag">Deforestation</span></td><td>Predicts where deforestation will occur up to 6 months in advance with ~80% accuracy. Piloted successfully in Borneo and Gabon. Allows rangers and NGOs to intervene before trees are felled rather than respond after the fact.</td></tr>
+        <tr><td>Dendra / Flash Forest / AirSeed</td><td>Various</td><td><span class="domain-tag">Reforestation</span></td><td>AI-guided drones fire seed pods at 120 km/h into prepared ground. Up to 100,000 pods per day per drone. Flash Forest targets 1 billion trees by 2028. AirSeed has planted 50,000+ trees in Australia using AI site selection to maximise survival rates vs. traditional hand-planting.</td></tr>
+        <tr><td>The Ocean Cleanup x AWS</td><td>The Ocean Cleanup + Amazon</td><td><span class="domain-tag">Ocean Plastic</span></td><td>AI models satellite imagery and ocean current data to predict plastic accumulation zones. 25 million kg removed in 2025 alone. 45 million kg cumulative by early 2026. Target: remove 90% of floating ocean plastic by 2040.</td></tr>
+        <tr><td>SurfPerch / Calling in Our Corals</td><td>Google Research + DeepMind</td><td><span class="domain-tag">Coral Reefs</span></td><td>Bioacoustic AI analyses continuous underwater audio recordings to assess reef health. Healthy reefs are acoustically rich -- the AI detects recovery. Can survey areas of reef that would take divers weeks in minutes of recording time.</td></tr>
+        <tr><td>ReefCloud</td><td>AIMS Australia</td><td><span class="domain-tag">Coral Reefs</span></td><td>AI-assisted coral image analysis and 4D photogrammetry. Automates coral cover and species identification from survey photos. Monitoring Indo-Pacific reefs at unprecedented scale and frequency.</td></tr>
+        <tr><td>SWAG / Pattern Radio</td><td>WWF-Canada / NOAA + Google</td><td><span class="domain-tag">Whales</span></td><td>Machine learning differentiates orca, fin whale, and humpback whale calls from continuous deep-ocean hydrophone recordings. Enables passive acoustic population monitoring without ship surveys. Detects whales in near real-time to alert shipping lanes.</td></tr>
+        <tr><td>IBM + WWF-Germany</td><td>IBM Consulting + WWF</td><td><span class="domain-tag">Elephants</span></td><td>AI identifies individual African forest elephants from camera-trap images -- a species that lives in dense forest where visual surveys are impossible. Announced August 2024. Enables census and movement tracking of one of the most elusive large mammals.</td></tr>
+        <tr><td>GraphCast / WeatherNext 2</td><td>Google DeepMind</td><td><span class="domain-tag">Climate</span></td><td>10-day global weather forecast in under 1 minute on a single TPU. Outperforms ECMWF HRES on more than 90% of tested variables. Critical for disaster warning (cyclone track), ecosystem management (fire weather), and agricultural planning. Trained on 40 years of ERA5 reanalysis data.</td></tr>
+        <tr><td>NVIDIA Earth-2</td><td>NVIDIA</td><td><span class="domain-tag">Climate Twin</span></td><td>Open AI climate modelling stack positioning itself as a "digital twin of Earth." CorrDiff model is 1,000x faster and 3,000x more energy-efficient than traditional physics-based simulations. Enables city-scale climate projections. The first serious computational infrastructure for a live Earth digital twin.</td></tr>
+        <tr><td>Google Flood Hub</td><td>Google</td><td><span class="domain-tag">Floods</span></td><td>AI-powered early flood alerts in 80+ countries. Provides 7-day advance warning -- compared to 2-day traditional warnings. Reaches communities via Android alerts. Has warned 460+ million people. Critical for smallholder farmers and rural communities with no other early warning access.</td></tr>
+        <tr><td>Global Fishing Watch</td><td>Google + Oceana + SkyTruth</td><td><span class="domain-tag">Oceans</span></td><td>Tracks 65,000+ fishing vessels using AIS signals and satellite imagery. Identifies "dark vessels" that turn off transponders to fish illegally. Estimates ~20% of global catch is IUU (illegal, unreported, unregulated). Published open data used by 140+ countries for fisheries management and marine protected area enforcement.</td></tr>
+        <tr><td>Project CETI</td><td>Various / interdisciplinary</td><td><span class="domain-tag">Cetaceans</span></td><td>Using machine learning (transformer models) to decode the click patterns (codas) of sperm whales off Dominica. The most ambitious interspecies communication attempt in history. Deployed an underwater hydrophone array. If successful, it would be the first decoding of non-human communication at the level of semantic content.</td></tr>
+        <tr><td>GBIF</td><td>Global Biodiversity Information Facility</td><td><span class="domain-tag">Data Substrate</span></td><td>The open aggregator of all biodiversity occurrence data. 2.8+ billion occurrence records from 100,000+ datasets. The foundational dataset most AI conservation models train on. Without GBIF, modern AI-driven biodiversity monitoring would not exist.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:2.5rem;border-left:3px solid var(--c-accent)">
+    <div class="card-title">The Long Horizon -- What AI Could Become for Nature</div>
+    <div class="card-body" style="margin-top:.5rem;font-style:italic;color:var(--c-ink-soft)">NVIDIA Earth-2 is the first serious attempt at a real-time digital twin of Earth's climate system. Project CETI, if successful, would mark the first time a non-human communication system was decoded at semantic depth. The convergence of ubiquitous environmental sensors, satellite constellations, large AI models, and real-time data pipelines makes a new kind of intelligence imaginable: distributed AI guardians monitoring every major biome, detecting tipping points before they tip, and translating the state of the Earth into language both humans and machines can act on. Not hypothetical. In construction. The infrastructure exists. The question is whether it is deployed fast enough.</div>
+    <span class="tag">Speculative / Horizon</span>
+  </div>
+</section>
+
+<hr class="rule" style="max-width:1100px;margin:0 auto">
+
+<!-- ARCHIVE -->
+<section id="archive" class="full-bleed">
+  <div class="section-inner">
+    <svg class="glyph" viewBox="0 0 40 40" fill="none"><rect x="6" y="8" width="28" height="26" rx="2" stroke="#87A878" stroke-width="1.5"/><path d="M12 16 H28 M12 22 H28 M12 28 H20" stroke="#2E5D3F" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <p class="sec-label">Sources and Citations</p>
+    <h2 class="sec-title">Archive</h2>
+    <p class="sec-lead">All facts on this site are verified against primary sources. Data is static -- baked at build time. Updated as new primary research is published. This page is designed to be machine-readable.</p>
+    <ol class="sources-list" aria-label="Source references">
+      <li>IUCN Red List of Threatened Species. Version 2025. iucnredlist.org/resources/summary-statistics</li>
+      <li>Bell J.B. et al. (2025). How little we've seen: visual coverage estimate of the deep seafloor. Science Advances. May 2025. doi:10.1126/sciadv.adp8602</li>
+      <li>Cazzolla Gatti R. et al. (2022). The number of tree species on Earth. PNAS. 119(6). doi:10.1073/pnas.2115329119</li>
+      <li>IUCN Global Tree Assessment. (October 2024). State of the World's Trees. bgci.org</li>
+      <li>Kew Royal Botanic Gardens. State of the World's Plants and Fungi 2023. kew.org</li>
+      <li>Stork N.E. (2018). How Many Species of Insects Are There on Earth? Annual Review of Entomology. 63:31-45.</li>
+      <li>WWF Living Planet Report 2024. Released October 10, 2024. 35,000 population trends; 5,495 species. wwf.org</li>
+      <li>ICRI / NOAA Coral Reef Watch. 4th Global Coral Bleaching Event 2025. icriforum.org/4gbe-2025</li>
+      <li>Smithsonian Human Origins Program. humanorigins.si.edu</li>
+      <li>Britannica. Cambrian Explosion. britannica.com/science/Cambrian-explosion</li>
+      <li>U.S. National Park Service. Mass Extinctions Through Geologic Time. nps.gov/subjects/fossils</li>
+      <li>NOAA National Ocean Service. How much oxygen comes from the ocean? oceanservice.noaa.gov</li>
+      <li>Dehasque M. et al. (2024). Temporal dynamics of woolly mammoth genome erosion. Cell. doi:10.1016/j.cell.2024.01.003</li>
+      <li>Dasgupta P. (2021). The Economics of Biodiversity: The Dasgupta Review. HM Treasury, UK. gov.uk/dasgupta-review</li>
+      <li>WWF + Google. Wildlife Insights / SpeciesNet. wildlifeinsights.org</li>
+      <li>iNaturalist. 300M Observations Blog Post. inaturalist.org/blog/126478 (spring 2026)</li>
+      <li>Harvard TEAMCORE. PAWS: Protection Assistant for Wildlife Security. teamcore.seas.harvard.edu</li>
+      <li>World Resources Institute. Global Forest Watch. globalforestwatch.org</li>
+      <li>The Ocean Cleanup. 2025 Year in Review. theoceancleanup.com/updates/2025-in-review</li>
+      <li>Google DeepMind. GraphCast. deepmind.google/blog/graphcast</li>
+      <li>NVIDIA. Earth-2 Climate Digital Twin. nvidia.com/en-us/high-performance-computing/earth-2</li>
+      <li>FactCheck.org. Amazon Doesn't Produce 20% of Earth's Oxygen. factcheck.org (2019)</li>
+      <li>Mora C. et al. (2011). How Many Species Are There on Earth? PLoS Biology. 9(8):e1001127</li>
+      <li>FAO (2015). Status of the World's Soil Resources. Rome: Food and Agriculture Organization.</li>
+      <li>Rosenberg K. et al. (2019). Decline of the North American avifauna. Science. 366:120-124.</li>
+      <li>Hallmann C. et al. (2017). More than 75% decline over 27 years in total flying insect biomass. PLoS ONE. 12(10):e0185809</li>
+      <li>Project CETI. projectceti.org</li>
+      <li>GBIF -- Global Biodiversity Information Facility. gbif.org</li>
+    </ol>
+    <div class="cite-block" role="complementary" aria-label="How to cite">
+How to cite: AVIDAA TERRA. A Living Library of Earth for Humans and AI.
+avidaa1.github.io/terra. Accessed [date]. AVIDAA, 2026.
+    </div>
+    <p class="footer-credo">"Every species is a library. Every extinction is a burning."<br>This archive exists so neither humans nor AI forget what was here.</p>
+    <p class="footer-sig">AVIDAA TERRA &middot; avidaa1.github.io/terra &middot; Built 2026-05-27 &middot; AVIDAA * IO</p>
+  </div>
+</section>
+
+</body>
+</html>
